@@ -1,0 +1,4 @@
+name: geo
+channels:
+  - conda-forge
+prefix: /opt/conda/envs/geo

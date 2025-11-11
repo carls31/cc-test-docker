@@ -1,0 +1,28 @@
+# Start from a lightweight conda base with mamba preinstalled
+FROM condaforge/mambaforge:latest
+
+# Avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Set working directory
+WORKDIR /app
+
+# Create a new environment named "geo-test" with all the libraries
+RUN mamba create -n geo-test -y \
+    python=3.11 \
+    numpy \
+    pandas \
+    geopandas \
+    matplotlib \
+    rasterio \
+    gdal \
+    shapely
+
+# Activate the environment automatically
+SHELL ["conda", "run", "-n", "geo-test", "/bin/bash", "-c"]
+
+# Copy your script
+COPY src/ /app/src/
+
+# Default command when running container
+CMD ["conda", "run", "-n", "geo-test", "python", "src/main.py"]

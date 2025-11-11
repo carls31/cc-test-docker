@@ -1,0 +1,7 @@
+numpy
+pandas
+geopandas
+matplotlib
+rasterio
+gdal==3.10.3
+shapely
